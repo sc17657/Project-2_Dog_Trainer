@@ -1,0 +1,26 @@
+{
+  "name": "project-2_dog_trainer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc17657/Project-2_Dog_Trainer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sc17657/Project-2_Dog_Trainer/issues"
+  },
+  "homepage": "https://github.com/sc17657/Project-2_Dog_Trainer#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "nodemon": "^2.0.12"
+  }
+}
