@@ -22,12 +22,12 @@ router.post('/', (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    Pet.findByPk(req.params.id).then((fruit) => {
+    Pet.findByPk(req.params.id).then((pet) => {
     res.render("show.ejs", { 
-        pet: pets[req.params.index] }
-        );
+        pets: pets,
+     });
   });
-
+});
   router.get("/:index/edit", (req, res) => {
     res.render("edit.ejs", 
       {
