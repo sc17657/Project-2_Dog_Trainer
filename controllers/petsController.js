@@ -2,10 +2,9 @@ const Pets = require('../models').Pets;
 const express = require('express');
 const router = express.Router();
 
-const pets = require('../models').Pets;
 
 router.get("/", (req, res) => {
-    Pet.findAll().then((pets) => {
+    Pets.findAll().then((pets) => {
     res.render("index.ejs", { 
     pets: pets
     });
@@ -17,40 +16,40 @@ router.get('/new', (req, res)=> {
 });
 
 router.post('/', (req, res) => {
-    Pet.create(req.body).then((newPet)=> {
+    Pets.create(req.body).then((newPet)=> {
     });
     res.redirect('/pets/');
 });
 
 router.get("/:id", (req, res) => {
-    Pet.findByPk(req.params.id).then((pet) => {
+    Pets.findByPk(req.params.id).then((pets) => {
     res.render("show.ejs", { 
         pets: pets,
      });
   });
 });
   router.get("/:id/edit", function (req, res) {
-      Pet.findByPk(req.params.id).then((pets)=> {
+      Pets.findByPk(req.params.id).then((pets)=> {
           res.render("edit.ejs", { 
-              pet: pet, 
+              Pets: pets, 
 
         });
     });
   });
 
 router.put('/:id', (req, res) => { 
-    Pet.update(req.body, {
+    Pets.update(req.body, {
         where: {id: req.params.id},
         returning: true,
     })
-        .then((pet) => {
+        .then((pets) => {
              res.redirect('/pets');
         });
     });
    
 
 router.delete('/:id', (req, res) => {
-	Pet.destroy({where: {id: req.params.id, } }).then(()=> {
+	Pets.destroy({where: {id: req.params.id, } }).then(()=> {
         res.redirect('/pets');
     }); 	 
 });

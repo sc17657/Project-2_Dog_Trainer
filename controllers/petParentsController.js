@@ -2,15 +2,15 @@
 const express = require("express");
 const router = express.Router();
 
-const petParents = require("../models').petparents");
+const petParents = require('../models').petparent;
 const pets = require("../pets");
 
 
 //Home Page
 router.get("/", (req, res) => {
-    PetParents.findALL().then((petParents) => {
+    petParents.findALL().then((PetParents) => {
     res.render("/index.ejs", { 
-    petParents: petParents
+    PetParents: petParents
     });
 });
 });
@@ -28,7 +28,7 @@ router.get("/login", (req, res) => {
   
     res.redirect(`/petParents/profiles/${index}`);
   });
-//Registration
+//Registration,,,,,,,nb                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 router.get('/register', (req, res) => {
     res.render('petParents/register.ejs');
 

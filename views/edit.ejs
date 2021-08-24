@@ -10,11 +10,11 @@
 
 <h1>Update your pets profile</h1>
 
-    <form action="/pets/<%=pet.id%>?_method=PUT" method="POST">
-            Name: <input type="text" name="name" value="<%=pet.name%>"/><br/>
-            Breed: <input type="text" name="breed" value="<%=pet.breed%>"/><br/>
-            Age: <input type="number" name="age" value="<%=pet.age%>"/><br/>
-            Tricks: <input type="text" name="tricks" value="<%=pet.tricks%>"/><br/>
+    <form action="/pets/<%=Pets.id%>?_method=PUT" method="POST">
+            Name: <input type="text" name="name" value="<%=Pets.name%>"/><br/>
+            Breed: <input type="text" name="breed" value="<%=Pets.breed%>"/><br/>
+            Age: <input type="number" name="age" value="<%=Pets.age%>"/><br/>
+            Tricks: <input type="text" name="tricks" value="<%=Pets.tricks%>"/><br/>
 
             <input type="submit"  value="Submit Changes"/>
 
