@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const petParents = require("../models/petParents");
+const petParents = require("../petParents.js");
 
 
 //Home Page

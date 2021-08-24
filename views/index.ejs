@@ -14,13 +14,13 @@
         <ul>
             <% for(let i=0; i < pets.length; i++){ %>
                 <li>
-			<a href="/pets/<%=i%>"><%=pets[i].name%></a>
+			<a href="/pets/<%=pets[i].id%>"><%=pets[i].name%></a>
                 </li>
-			<form action="/pets/<%=i%>?_method=DELETE" method="POST">
+			<form action="/pets/<%=pets[i].id%>?_method=DELETE" method="POST">
 				<input type="submit" value="DELETE"/>
 			</form>
 			
-			<a href="/pets/<%=i%>/edit">Edit</a>
+			<a href="/pets/<%=pets[i].id%>/edit">Edit</a>
 		
             <% } %>
         </ul>

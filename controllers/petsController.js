@@ -1,12 +1,15 @@
+const Pets = require('../models').Pets;
 const express = require('express');
 const router = express.Router();
 
-const pets = require("../models/pets.js");
+const pets = require("../pets.js");
 
 router.get("/", (req, res) => {
+    Pet.findAll().then((pets) => {
     res.render("index.ejs", { 
     pets: pets
     });
+});
 });
 
 router.get('/new', (req, res)=> {
@@ -18,9 +21,10 @@ router.post('/', (req, res) => {
     res.redirect('/pets/');
 });
 
-router.get("/:index", (req, res) => {
+router.get("/:id", (req, res) => {
+    Pet.findByPk(req.params.id).then((fruit) => {
     res.render("show.ejs", { 
-        pets: pets[req.params.index] }
+        pet: pets[req.params.index] }
         );
   });
 
