@@ -2,14 +2,17 @@
 const express = require("express");
 const router = express.Router();
 
-const petParents = require("../petParents.js");
+const petParents = require("../models').petparents");
+const pets = require("../pets");
 
 
 //Home Page
 router.get("/", (req, res) => {
-    res.render("petParents/index.ejs", { 
+    PetParents.findALL().then((petParents) => {
+    res.render("/index.ejs", { 
     petParents: petParents
     });
+});
 });
 router.get("/login", (req, res) => {
     res.render("petParents/login.ejs");
@@ -32,33 +35,38 @@ router.get('/register', (req, res) => {
     });
 
     router.post("/", (req, res) => {
-        console.log(req.body);
-        petParents.push(req.body);
-        res.redirect(`/petParents/profiles/${petParents.length - 1}`);
+        petParents.create(req.body).then((newPetParents) => {
+            res.redirect("/profiles");
+        });
       });
       
-      router.get("/profiles/:index", (req, res) => {
-        res.render("petParents/profiles.ejs", {
-          petParents: petParents[req.params.index],
-          index: req.params.index,
+      router.get("/:id", (req, res) => {
+          petParents.findbyPk(req.params.id).then((pets) => {
+            res.render("petParents/profiles.ejs", {
+            petParents: petParents,
+          });
+          
+    });
+});
+
+
+      router.put("/:id", (req, res) => {
+        PetParents.update(req.body, {
+            where: {id: req.params.id },
+            returning: true,
+        }).then((petParents) => {
+        res.redirect("/petParents/profiles.ejs");
+
         });
       });
 
-    //   router.put("/profiles/:index", (req, res) => {
-    //       petParents[req.params.index] = req.body;
-    //       res.redirect(`petParents/profiles/${req.params.index}`);
 
-    //   });
+      router.delete("/:id", (req, res) => {
 
-      router.put("/profiles/:index", (req, res) => {
-        petParents[req.params.index] = req.body;
-        res.redirect(`/petParents/profiles/${req.params.index}`);
-      });
+        PetParents.destroy({ where: {id: req.params.id} }).then(() => {
+            res.redirect("/petParents"); 
 
-
-      router.delete("/:index", (req, res) => {
-        petParents.splice(req.params.index, 1); 
-        res.redirect("/petParents"); 
+        });
       });
 
 
