@@ -12,14 +12,16 @@ module.exports = {
         tricks: 'sit',
         createdAt: new Date(),
         updatedAt: new Date(),
+        parent: 1,
     },
         { 
-      name: 'Lucy',
-      breed: 'Poodle',
+      name: 'Teddy',
+      breed: 'pitbull',
       age: 10,
       tricks: 'shake',
       createdAt: new Date(),
       updatedAt: new Date(),
+      parent: 2,
     },
 
     ],

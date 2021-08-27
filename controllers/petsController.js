@@ -1,6 +1,7 @@
 const Pets = require('../models').Pets;
 const express = require('express');
 const router = express.Router();
+const PetParents = require('../models').PetParents
 
 
 router.get("/", (req, res) => {
@@ -22,12 +23,22 @@ router.post('/', (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    Pets.findByPk(req.params.id).then((pets) => {
-    res.render("show.ejs", { 
-        pets: pets,
-     });
-  });
-});
+    Pets.findByPk(req.params.id, {
+        include : [{
+            model: PetParents,
+            attributes: ['name']
+    }],
+})
+    .then(pets => {
+        console.log(pets)
+        res.render('show.ejs', {
+            pets: pets
+        });
+    })
+})
+
+
+
   router.get("/:id/edit", function (req, res) {
       Pets.findByPk(req.params.id).then((pets)=> {
           res.render("edit.ejs", { 
@@ -45,18 +56,14 @@ router.put('/:id', (req, res) => {
         .then((pets) => {
              res.redirect('/pets');
         });
-    });
+
    
 
-router.delete('/:id', (req, res) => {
-	Pets.destroy({where: {id: req.params.id, } }).then(()=> {
-        res.redirect('/pets');
-    }); 	 
+    router.delete("/:id", (req, res) => {
+        Pets.destroy({ where: { id: req.params.id } }).then(() => {
+          res.redirect("/pets");
+        });
+      });
 });
-
-
-
-
-
-
-module.exports = router;
+      
+    module.exports = router;

@@ -1,0 +1,42 @@
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert(
+      "PetParents",
+    [ 
+    { 
+      name: "Sue Carpenter",
+      phone: 563-650-3660,
+      userID: "SC17657",
+      password: "Yancy",
+  
+  },
+  
+  {
+      name: "Kelly Carpenter",
+      phone: 111-111-1111,
+      userID: "KC12345",
+      password: "Teddy"
+  },
+  {
+      name: "Julie Sylvester",
+      phone: 222-222-2222,
+      userID: "JS12345",
+      password: "Eddie"
+    },
+],
+  {}
+
+    );
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+  }
+};

@@ -1,5 +1,6 @@
 'use strict';
 const {Model} = require('sequelize');
+const petParents = require('../petParents');
 module.exports = (sequelize, DataTypes) => {
   class Pets extends Model {
     /**
@@ -8,14 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-    }
+      Pets.belongsTo(models.PetParents, { foreignKey: "parent" });   
+     }
   };
+
+
   Pets.init({
     name: DataTypes.STRING,
     breed: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    tricks: DataTypes.STRING
+    tricks: DataTypes.STRING,
+    parent: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Pets',
