@@ -9,6 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/pets", require("./controllers/petsController.js"));
 app.use("/petParents", require("./controllers/petParentsController.js"));
 
-app.listen(process.env.port, () => { 
+app.listen(process.env.PORT, () => { 
     console.log("I am listening");
 });
